@@ -83,6 +83,7 @@ function Edit(props) {
             alt={data.alt || ''}
             loading="lazy"
             responsive={true}
+            ref={props.imageRef}
           />
         ) : (
           <ImageInput
