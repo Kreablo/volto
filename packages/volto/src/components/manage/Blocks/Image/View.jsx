@@ -4,9 +4,10 @@ import UniversalLink from '@plone/volto/components/manage/UniversalLink/Universa
 import cx from 'classnames';
 import { flattenToAppURL, isInternalURL } from '@plone/volto/helpers/Url/Url';
 import { withBlockExtensions } from '@plone/volto/helpers/Extensions';
+import { forwardRef } from 'react';
 import config from '@plone/volto/registry';
 
-export const View = ({ className, data, detached, properties, style }) => {
+export const View = forwardRef(({ className, data, detached, properties, style }, ref) => {
   const href = data?.href?.[0]?.['@id'] || '';
 
   const Image = config.getComponent({ name: 'Image' }).component;
@@ -68,6 +69,7 @@ export const View = ({ className, data, detached, properties, style }) => {
                 alt={data.alt || ''}
                 loading="lazy"
                 responsive={true}
+                ref={ref}
               />
             );
             if (href) {
@@ -87,7 +89,7 @@ export const View = ({ className, data, detached, properties, style }) => {
       )}
     </p>
   );
-};
+});
 
 /**
  * Property types.
