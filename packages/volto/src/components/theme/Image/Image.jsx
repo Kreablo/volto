@@ -1,6 +1,7 @@
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { flattenToAppURL, flattenScales } from '@plone/volto/helpers/Url/Url';
+import { forwardRef } from 'react';
 
 /**
  * Image component
@@ -11,8 +12,9 @@ import { flattenToAppURL, flattenScales } from '@plone/volto/helpers/Url/Url';
  * @param {boolean} loading - (default: eager) set to `lazy` to lazy load the image
  * @param {boolean} responsive - (default: false) set to `true` to add the `responsive` class to the image
  * @param {string} className - Additional classes to add to the image
+ * @param {MutableRefObject<HTMLImageElement> | undefined} ref - Reference to the image element.
  */
-export default function Image({
+const Image = forwardRef(({
   item,
   imageField,
   src,
@@ -21,7 +23,7 @@ export default function Image({
   responsive = false,
   className = '',
   ...imageProps
-}) {
+}, ref) => {
   if (!item && !src) return null;
 
   // TypeScript hints for editor autocomplete :)
@@ -82,8 +84,8 @@ export default function Image({
     attrs.fetchpriority = 'high';
   }
 
-  return <img {...attrs} alt={alt} {...imageProps} />;
-}
+  return <img {...attrs} alt={alt} ref={ref} {...imageProps} />;
+});
 
 Image.propTypes = {
   item: PropTypes.shape({
@@ -99,3 +101,5 @@ Image.propTypes = {
   responsive: PropTypes.bool,
   className: PropTypes.string,
 };
+
+export default Image;
