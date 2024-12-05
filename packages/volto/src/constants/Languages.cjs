@@ -16,10 +16,10 @@ module.exports = {
   nl: 'Nederlands',
   ro: 'Română',
   ru: 'Русский',
+  sv: 'Svenska',
   ja: '日本語',
   pt: 'Português',
   pt_BR: 'Português (Brasil)',
-  sv: 'Svenska',
   zh_CN: '中文',
 };
 
