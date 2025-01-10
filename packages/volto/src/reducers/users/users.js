@@ -14,6 +14,8 @@ import {
   UPDATE_USER,
   INITIAL_PASSWORD,
   RESET_PASSWORD,
+  LOGOUT,
+  RESET_USERS,
 } from '@plone/volto/constants/ActionTypes';
 
 const initialState = {
@@ -88,6 +90,8 @@ function getRequestKey(actionType) {
  */
 export default function users(state = initialState, action = {}) {
   switch (action.type) {
+    case RESET_USERS:
+      return initialState;
     case `${CREATE_USER}_PENDING`:
     case `${DELETE_USER}_PENDING`:
     case `${GET_USER}_PENDING`:

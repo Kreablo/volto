@@ -1,3 +1,6 @@
+import { purgeMessages } from '@plone/volto/actions/messages/messages';
+import { resetUsers } from '@plone/volto/actions/users/users';
+
 /**
  * Search actions.
  * @module actions/search/search
@@ -49,12 +52,17 @@ export function loginRenew() {
  * @returns {Object} Logout action.
  */
 export function logout() {
-  return {
-    type: LOGOUT,
-    request: {
-      op: 'post',
-      path: '@logout',
-    },
+  return async (dispatch, _getState) => {
+    const result = await dispatch({
+      type: LOGOUT,
+      request: {
+        op: 'post',
+        path: '@logout',
+      },
+    });
+    await dispatch(resetUsers());
+    await dispatch(purgeMessages());
+    return result;
   };
 }
 

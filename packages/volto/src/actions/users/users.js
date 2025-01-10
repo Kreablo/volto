@@ -14,7 +14,18 @@ import {
   RESET_PASSWORD,
   UPDATE_PASSWORD,
   UPDATE_USER,
+  RESET_USERS,
 } from '@plone/volto/constants/ActionTypes';
+
+
+/**
+ * Remove users state from Redux store.
+ */
+export const resetUsers = () => (
+  {
+    type: RESET_USERS,
+  }
+);
 
 /**
  * Create user function.
