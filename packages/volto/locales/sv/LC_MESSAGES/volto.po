@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Plone\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-23T10:42:17.489Z\n"
-"PO-Revision-Date: 2025-02-19 11:35+0100\n"
+"PO-Revision-Date: 2025-02-19 11:50+0100\n"
 "Last-Translator: Andreas Jonsson <andreas.jonsson@kreablo.se>\n"
 "Language: Swedish\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
@@ -2566,7 +2566,7 @@ msgstr "Ok"
 #. Default: "Only 7-bit bytes characters are allowed. Cannot contain uppercase letters, special characters: <, >, &, #, /, ?, or others that are illegal in URLs. Cannot start with: _, aq_, @@, ++. Cannot end with __. Cannot be: request,contributors, ., .., "". Cannot contain new lines."
 #: components/manage/Widgets/IdWidget
 msgid "Only 7-bit bytes characters are allowed. Cannot contain uppercase letters, special characters: <, >, &, #, /, ?, or others that are illegal in URLs. Cannot start with: _, aq_, @@, ++. Cannot end with __. Cannot be: request,contributors, ., .., "". Cannot contain new lines."
-msgstr "Får ej innehålla stora bokstäver, andra bokstäver än a-z, specialtecken: <, >, &, #, /, ?, eller andra tecken som ej för förekomma i URL:er. Får ej börja med: _, aq_, @@, ++. Får ej sluta med __. Får ej vara: request,contributors, ., .., \"\". Får ej innehålla nyradstecken."
+msgstr "Får ej innehålla stora bokstäver, andra bokstäver än a-z, specialtecken: <, >, &, #, /, ?, eller andra tecken som ej för förekomma i URL:er. Får ej börja med: _, aq_, @@, ++. Får ej sluta med __. Får ej vara: request,contributors, ., .., \". Får ej innehålla nyradstecken."
 
 #. Default: "Open in a new tab"
 #: components/manage/Blocks/Image/schema
