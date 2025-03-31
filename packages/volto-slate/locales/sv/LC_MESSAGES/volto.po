@@ -1,0 +1,148 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: 2024-11-27 23:37+0100\n"
+"Last-Translator: \n"
+"Language: \n"
+"Language-Team: \n"
+"Content-Type: \n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: \n"
+
+#: editor/plugins/Link/index
+msgid "Add link"
+msgstr "Lägg till länk"
+
+#: widgets/HtmlSlateWidget
+msgid "An error has occurred while editing "{name}" field. We have been notified and we are looking into it. Please save your work and retry. If the issue persists please contact the site administrator."
+msgstr "Ett fel uppstod då fältet \"{name}\" redigerades. Felrapport är skickad. Spara och prova igen.  Kontakta webbplatsadminstratör om problemet kvarstår."
+
+#: widgets/RichTextWidgetView
+msgid "An error has occurred while rendering "{name}" field. We have been notified and we are looking into it. If the issue persists please contact the site administrator."
+msgstr "Ett fel uppstod vid renderingen av fältet \"{name}\". Felrapport skickades. Kontakta webbplatsadminstratör om felet kvarstår."
+
+#: blocks/Table/TableBlockEdit
+msgid "Bottom"
+msgstr "Längst ned"
+
+#: blocks/Table/TableBlockEdit
+msgid "Center"
+msgstr "Centrerad"
+
+#: blocks/Table/TableBlockEdit
+#: editor/plugins/Table/index
+msgid "Delete col"
+msgstr "Ta bort kolumn"
+
+#: blocks/Table/TableBlockEdit
+#: editor/plugins/Table/index
+msgid "Delete row"
+msgstr "Ta bort rad"
+
+#: editor/plugins/Table/index
+msgid "Delete table"
+msgstr "Ta bort tabell"
+
+#: blocks/Table/TableBlockEdit
+msgid "Divide each row into separate cells"
+msgstr "Separera varje rad i separata celler"
+
+#: elementEditor/messages
+msgid "Edit element"
+msgstr "Redigera element"
+
+#: editor/plugins/AdvancedLink/index
+#: editor/plugins/Link/index
+msgid "Edit link"
+msgstr "Redigera länk"
+
+#: blocks/Table/TableBlockEdit
+msgid "Fixed width table cells"
+msgstr "Tabelceller med fast bredd"
+
+#: blocks/Table/TableBlockEdit
+msgid "Hide headers"
+msgstr "Dölj rubriker"
+
+#: blocks/Table/TableBlockEdit
+#: editor/plugins/Table/index
+msgid "Insert col after"
+msgstr "Infoga kolumn efter"
+
+#: blocks/Table/TableBlockEdit
+#: editor/plugins/Table/index
+msgid "Insert col before"
+msgstr "Infoga kolumn före"
+
+#: blocks/Table/TableBlockEdit
+#: editor/plugins/Table/index
+msgid "Insert row after"
+msgstr "Infoga rad efter"
+
+#: blocks/Table/TableBlockEdit
+#: editor/plugins/Table/index
+msgid "Insert row before"
+msgstr "Infoga rad före"
+
+#: blocks/Table/TableBlockEdit
+msgid "Left"
+msgstr "Vänster"
+
+#: blocks/Table/TableBlockEdit
+msgid "Make the table compact"
+msgstr "Gör tabellen kompakt"
+
+#: blocks/Table/TableBlockEdit
+msgid "Make the table sortable"
+msgstr "Gör tabellen sorteringsbar"
+
+#: blocks/Table/TableBlockEdit
+msgid "Middle"
+msgstr "Mitten"
+
+#: blocks/Text/SlashMenu
+msgid "No matching blocks"
+msgstr "Inga matchande block"
+
+#: blocks/Table/TableBlockEdit
+msgid "Reduce complexity"
+msgstr "Reducera komplexitet"
+
+#: elementEditor/messages
+msgid "Remove element"
+msgstr "Ta bort element"
+
+#: editor/plugins/AdvancedLink/index
+msgid "Remove link"
+msgstr "Ta bort länk"
+
+#: blocks/Table/TableBlockEdit
+msgid "Right"
+msgstr "Höger"
+
+#: blocks/Table/TableBlockEdit
+msgid "Stripe alternate rows with color"
+msgstr "Alternera radfärger"
+
+#: blocks/Table/TableBlockEdit
+msgid "Table"
+msgstr "Tabell"
+
+#: blocks/Table/TableBlockEdit
+msgid "Table color inverted"
+msgstr "Inverterad tabellfärg"
+
+#: blocks/Table/TableBlockEdit
+msgid "Top"
+msgstr "Längst upp"
+
+#: blocks/Text/DefaultTextBlockEditor
+#: blocks/Text/DetachedTextBlockEditor
+msgid "Type text…"
+msgstr "Skriv text…"
+
+#: blocks/Table/TableBlockEdit
+msgid "Visible only in view mode"
+msgstr "Synlig endast i visningsläge"
