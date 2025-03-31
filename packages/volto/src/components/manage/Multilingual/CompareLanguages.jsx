@@ -1,11 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { defineMessages, useIntl } from 'react-intl';
 import config from '@plone/volto/registry';
 import langmap from '@plone/volto/helpers/LanguageMap/LanguageMap';
 import { useDetectClickOutside } from '@plone/volto/helpers/Utils/useDetectClickOutside';
 
 import Icon from '@plone/volto/components/theme/Icon/Icon';
-import { Button } from 'semantic-ui-react';
 import translateSVG from '@plone/volto/icons/translate.svg';
 import clearSVG from '@plone/volto/icons/clear.svg';
 
@@ -26,11 +25,23 @@ const CompareLanguagesMenu = ({
   comparingLanguage,
   setComparingLanguage,
   closeMenu,
+  cmpButtonRef,
 }) => {
   const intl = useIntl();
 
-  const ClickOutsideListener = () => {
-    closeMenu();
+  const isParentOrSelf = (p0, e) => {
+    if (p0 === e) {
+      return true;
+    }
+    if (e.parentElement && e !== e.parentElement) {
+      return isParentOrSelf(p0, e.parentElement);
+    }
+  };
+
+  const ClickOutsideListener = (e) => {
+    if (e.type !== 'click' || (!cmpButtonRef.current || !isParentOrSelf(cmpButtonRef.current, e.target))) {
+       closeMenu();
+    }
   };
 
   const ref = useDetectClickOutside({
@@ -104,6 +115,7 @@ const CompareLanguages = React.forwardRef((props, ref) => {
     toolbarRef,
   } = props;
 
+  const cmpButtonRef = useRef(null);
   const intl = useIntl();
   const [viewMenu, setViewMenu] = useState(false);
   const translations = config.settings.isMultilingual
@@ -120,7 +132,8 @@ const CompareLanguages = React.forwardRef((props, ref) => {
       <div className="toolbar-compare-translations-wrapper">
         <div className="toolbar-button-spacer" />
 
-        <Button
+        <button
+          ref={cmpButtonRef}
           aria-label={intl.formatMessage(messages.compare_to)}
           title={intl.formatMessage(messages.compare_to)}
           onClick={() => {
@@ -135,10 +148,11 @@ const CompareLanguages = React.forwardRef((props, ref) => {
           ) : (
             <Icon className="mobile only" name={translateSVG} size="30px" />
           )}
-        </Button>
+        </button>
 
         {viewMenu && (
           <CompareLanguagesMenu
+            cmpButtonRef={cmpButtonRef}
             pathname={pathname}
             theToolbar={toolbarRef}
             key={`compareLanguagesComponent`}
