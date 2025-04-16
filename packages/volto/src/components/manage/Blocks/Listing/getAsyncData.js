@@ -2,6 +2,7 @@ import { getQueryStringResults } from '@plone/volto/actions/querystringsearch/qu
 import { resolveBlockExtensions } from '@plone/volto/helpers/Extensions';
 import qs from 'query-string';
 import { slugify } from '@plone/volto/helpers/Utils/Utils';
+import { singleDispatch } from './singleDispatch';
 
 const getCurrentPage = (location, id) => {
   const pageQueryParam = qs.parse(location.search);
@@ -33,7 +34,8 @@ export default function getListingBlockAsyncData(props) {
   }
 
   return [
-    dispatch(
+    singleDispatch(
+      dispatch,
       getQueryStringResults(
         path,
         {
@@ -45,6 +47,7 @@ export default function getListingBlockAsyncData(props) {
         subrequestID,
         currentPage,
       ),
+      subrequestID,
     ),
   ];
 }

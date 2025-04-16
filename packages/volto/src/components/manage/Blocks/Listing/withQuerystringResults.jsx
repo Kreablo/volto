@@ -10,6 +10,8 @@ import { getBaseUrl } from '@plone/volto/helpers/Url/Url';
 
 import config from '@plone/volto/registry';
 
+import { singleDispatch } from './singleDispatch';
+
 function getDisplayName(WrappedComponent) {
   return WrappedComponent.displayName || WrappedComponent.name || 'Component';
 }
@@ -50,6 +52,7 @@ export default function withQuerystringResults(WrappedComponent) {
     const querystringResults = useSelector(
       (state) => state.querystringsearch.subrequests,
     );
+
     const dispatch = useDispatch();
 
     const folderItems = content?.is_folderish ? content.items : [];
@@ -89,17 +92,20 @@ export default function withQuerystringResults(WrappedComponent) {
 
     useDeepCompareEffect(() => {
       if (hasQuery) {
-        dispatch(
+        singleDispatch(
+          dispatch,
           getQueryStringResults(
             initialPath,
             adaptedQuery,
             subrequestID,
             currentPage,
           ),
+          subrequestID,
         );
       } else if (isImageGallery && !hasQuery) {
         // when used as image gallery, it doesn't need a query to list children
-        dispatch(
+        singleDispatch(
+          dispatch,
           getQueryStringResults(
             initialPath,
             {
@@ -115,9 +121,14 @@ export default function withQuerystringResults(WrappedComponent) {
             },
             subrequestID,
           ),
+          subrequestID,
         );
       } else {
-        dispatch(getContent(initialPath, null, null, currentPage));
+        singleDispatch(
+          dispatch,
+          getContent(initialPath, null, null, currentPage),
+          subrequestID
+        );
       }
       adaptedQueryRef.current = adaptedQuery;
       currentPageRef.current = currentPage;
