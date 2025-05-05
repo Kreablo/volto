@@ -321,15 +321,19 @@ class AddonRegistry {
     let pathsConfig: Record<string, string[]> | undefined;
     let baseUrl: string = '';
     if (configFile) {
-      const jsConfig = JSON.parse(
-        fs.readFileSync(configFile, 'utf-8'),
-      ).compilerOptions;
-      if (jsConfig) {
-        pathsConfig = jsConfig.paths;
-        baseUrl = jsConfig.baseUrl;
-      } else {
-        pathsConfig = {};
-        baseUrl = '';
+      try {
+        const jsConfig = JSON.parse(
+          fs.readFileSync(configFile, 'utf-8'),
+        ).compilerOptions;
+        if (jsConfig) {
+          pathsConfig = jsConfig.paths;
+          baseUrl = jsConfig.baseUrl;
+        } else {
+          pathsConfig = {};
+          baseUrl = '';
+        }
+      } catch (e) {
+        throw `${configFile}: ${e}`;
       }
     }
 
