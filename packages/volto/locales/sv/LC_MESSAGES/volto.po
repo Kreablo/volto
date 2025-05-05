@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: Plone\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-23T10:42:17.489Z\n"
-"PO-Revision-Date: 2025-02-19 11:50+0100\n"
+"PO-Revision-Date: 2025-05-05 16:47+0200\n"
 "Last-Translator: Andreas Jonsson <andreas.jonsson@kreablo.se>\n"
 "Language: Swedish\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
@@ -576,6 +576,11 @@ msgstr "Kan ej redigera layout för innehållstypen <strong>{type}</strong> för
 msgid "Cancel"
 msgstr "Avbryt"
 
+#. Default: "Cancel search"
+#: components/manage/Blocks/Search/components/SearchInput
+msgid "Cancel search"
+msgstr "Avbryt sökning"
+
 #. Default: "Cell"
 #: config/Blocks
 msgid "Cell"
@@ -999,6 +1004,11 @@ msgstr "Datum (nyast först)"
 #: components/theme/Register/Register
 msgid "Default"
 msgstr "Förvalt"
+
+#. Default: "Default value"
+#: components/manage/Widgets/SchemaWidget
+msgid "Default value"
+msgstr "Standardvärde"
 
 #. Default: "Default view"
 #: config/Views
@@ -1520,6 +1530,11 @@ msgstr "Fält"
 msgid "File"
 msgstr "Fil"
 
+#. Default: "File is not of the accepted type {accept}"
+#: components/manage/Widgets/FileWidget
+msgid "File is not of the accepted type {accept}"
+msgstr "Filen är inte av godtagbar typ {accept}"
+
 #. Default: "File size"
 #: components/manage/Contents/ContentsUploadModal
 msgid "File size"
@@ -1539,6 +1554,11 @@ msgstr "Filnamn"
 #: components/manage/Contents/ContentsUploadModal
 msgid "Files uploaded: {uploadedFiles}"
 msgstr "Uppladdade filer: {uploadedFiles}"
+
+#. Default: "Fills the value of the form field with the value supplied by a query parameter inside the URL with the given name."
+#: components/manage/Widgets/SchemaWidget
+msgid "Fills the value of the form field with the value supplied by a query parameter inside the URL with the given name."
+msgstr "Fyller i värdet i formulärfältet med värdet som skickas i en query-parameter med det angivna namnet i URL:en."
 
 #. Default: "Filter"
 #: components/manage/Controlpanels/Aliases
@@ -2566,7 +2586,7 @@ msgstr "Ok"
 #. Default: "Only 7-bit bytes characters are allowed. Cannot contain uppercase letters, special characters: <, >, &, #, /, ?, or others that are illegal in URLs. Cannot start with: _, aq_, @@, ++. Cannot end with __. Cannot be: request,contributors, ., .., "". Cannot contain new lines."
 #: components/manage/Widgets/IdWidget
 msgid "Only 7-bit bytes characters are allowed. Cannot contain uppercase letters, special characters: <, >, &, #, /, ?, or others that are illegal in URLs. Cannot start with: _, aq_, @@, ++. Cannot end with __. Cannot be: request,contributors, ., .., "". Cannot contain new lines."
-msgstr "Får ej innehålla stora bokstäver, andra bokstäver än a-z, specialtecken: <, >, &, #, /, ?, eller andra tecken som ej för förekomma i URL:er. Får ej börja med: _, aq_, @@, ++. Får ej sluta med __. Får ej vara: request,contributors, ., .., \". Får ej innehålla nyradstecken."
+msgstr "Får ej innehålla stora bokstäver, andra bokstäver än a-z, specialtecken: <, >, &, #, /, ?, eller andra tecken som ej för förekomma i URL:er. Får ej börja med: _, aq_, @@, ++. Får ej sluta med __. Får ej vara: request,contributors, ., .., ". Får ej innehålla nyradstecken."
 
 #. Default: "Open in a new tab"
 #: components/manage/Blocks/Image/schema
@@ -2680,6 +2700,11 @@ msgstr "Personliga verktyg"
 #: components/manage/Contents/ContentsPropertiesModal
 msgid "Persons responsible for creating the content of this item. Please enter a list of user names, one per line. The principal creator should come first."
 msgstr "Personer ansvariga för innehållet i detta objekt. Ange en lista av användarnamn, ett per rad. Den huvudsakliga skaparen av innehåll bör stå först."
+
+#. Default: "Placeholder"
+#: components/manage/Widgets/SchemaWidget
+msgid "Placeholder"
+msgstr "Platshållare"
 
 #. Default: "Please choose an existing content as source for this element"
 #: components/manage/Blocks/Teaser/DefaultBody
@@ -2797,6 +2822,11 @@ msgstr "Publiceringsdatum"
 #: components/manage/Blocks/Listing/schema
 msgid "Query"
 msgstr "Sökfråga"
+
+#. Default: "Query Parameter Name"
+#: components/manage/Widgets/SchemaWidget
+msgid "Query Parameter Name"
+msgstr "Namn på query-parameter"
 
 #. Default: "Re-enter the password. Make sure the passwords are identical."
 #: components/manage/Preferences/ChangePassword
@@ -3729,6 +3759,11 @@ msgstr "Backend-serern svarar tyvärr inte. Försök ladda om sidan. Vänligen k
 msgid "The button presence disables the live search, the query is issued when you press ENTER"
 msgstr "Närvaron av knapp avvaktiverar live-söking, sökfrågan skickas då man trycker på ENTER"
 
+#. Default: "The file you uploaded exceeded the maximum allowed size of {size} bytes"
+#: components/manage/Widgets/FileWidget
+msgid "The file you uploaded exceeded the maximum allowed size of {size} bytes"
+msgstr "Filen som laddades upp överskred den maximal tillåten storlek ({size} bytes)"
+
 #. Default: "The following content rules are active in this Page. Use the content rules control panel to create new rules or delete or modify existing ones."
 #: components/manage/Rules/Rules
 msgid "The following content rules are active in this Page. Use the content rules control panel to create new rules or delete or modify existing ones."
@@ -3768,6 +3803,11 @@ msgstr "Angiven alternativ url finns redan!"
 #: components/theme/Register/Register
 msgid "The registration process has been successful. Please check your e-mail inbox for information on how activate your account."
 msgstr "Registreringsprocessen lyckades. Titta i din epost för information hur du aktiverar kontot."
+
+#. Default: "The selected default language must be in the list of the field 'Available languages'"
+#: helpers/MessageLabels/MessageLabels
+msgid "The selected default language must be in the list of the field 'Available languages'"
+msgstr "Det vald standardspråket måste finnas i listan i fältet 'Tillgängliga språk'"
 
 #. Default: "The site configuration is outdated and needs to be upgraded."
 #: components/manage/Controlpanels/Controlpanels
@@ -3879,6 +3919,7 @@ msgstr "Den här regeln appliceras på följande platser:"
 
 #. Default: "Time"
 #: components/manage/Widgets/DatetimeWidget
+#: components/manage/Widgets/TimeWidget
 msgid "Time"
 msgstr "Tid"
 
@@ -4474,6 +4515,11 @@ msgstr "Webbplatsen är i fas med senaste programvaruversion."
 msgid "Your usernaame is required for reset your password."
 msgstr "Användarnamn krävs för lösenordsåterställning."
 
+#. Default: "File types allowed"
+#: components/manage/Widgets/SchemaWidget
+msgid "accept"
+msgstr "Tillåtna filtyper"
+
 #. Default: "Enter an email address. This is necessary in case the password is lost. We respect your privacy, and will not give the address away to any third parties or expose it anywhere."
 #: helpers/MessageLabels/MessageLabels
 msgid "addUserFormEmailDescription"
@@ -5048,6 +5094,11 @@ msgstr "Välj"
 #: components/manage/Blocks/Search/components/ViewSwitcher
 msgid "selectView"
 msgstr "Välj vy"
+
+#. Default: "Maximum size of the file in bytes"
+#: components/manage/Widgets/SchemaWidget
+msgid "size"
+msgstr "Maximal filstorlek i bytes"
 
 #. Default: "Skip to footer"
 #: components/theme/SkipLinks/SkipLinks
