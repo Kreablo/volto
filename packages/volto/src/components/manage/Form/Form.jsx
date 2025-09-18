@@ -190,6 +190,7 @@ class Form extends Component {
     // Adding fallback in case the fields are empty, so we are sure that the edit form
     // shows at least the default blocks
     if (
+      formData &&
       formData.hasOwnProperty(blocksFieldname) &&
       formData.hasOwnProperty(blocksLayoutFieldname)
     ) {
@@ -215,6 +216,7 @@ class Form extends Component {
 
     let selectedBlock = null;
     if (
+      formData &&
       formData.hasOwnProperty(blocksLayoutFieldname) &&
       formData[blocksLayoutFieldname].items.length > 0
     ) {
