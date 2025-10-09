@@ -915,7 +915,7 @@ class Form extends Component {
         >
           <fieldset className="invisible">
             <Segment.Group raised>
-              {schema && schema.fieldsets.length > 1 && (
+              {schema && schema.fieldsets && schema.fieldsets.length > 1 && (
                 <>
                   {settings.verticalFormTabs && this.props.title && (
                     <Segment secondary attached key={this.props.title}>
@@ -978,7 +978,7 @@ class Form extends Component {
                   />
                 </>
               )}
-              {schema && schema.fieldsets.length === 1 && (
+              {schema && schema.fieldsets && schema.fieldsets.length === 1 && (
                 <Segment>
                   {this.props.title && (
                     <Segment className="primary">
