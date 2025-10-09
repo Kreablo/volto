@@ -175,10 +175,18 @@ class View extends Component {
    * @method getViewByLayout
    * @returns {string} Markup for component.
    */
-  getViewByLayout = () =>
-    config.views.layoutViews[
-      this.props.content[getLayoutFieldname(this.props.content)]
-    ] || null;
+  getViewByLayout = () => {
+    const c = config;
+    const vs = config.views;
+    const lvs = config.views.layoutViews;
+    const fn = getLayoutFieldname(this.props.content);
+    const layout = this.props.content[fn];
+    if (lvs[layout]) {
+      return lvs[layout];
+    } else {
+      return null;
+    }
+  }
 
   /**
    * Cleans the component displayName (specially for connected components)
