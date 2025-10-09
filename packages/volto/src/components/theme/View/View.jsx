@@ -176,6 +176,9 @@ class View extends Component {
    * @returns {string} Markup for component.
    */
   getViewByLayout = () => {
+    if (this.props.content['@type'] === 'LRF') {
+        return null
+    }
     const c = config;
     const vs = config.views;
     const lvs = config.views.layoutViews;
