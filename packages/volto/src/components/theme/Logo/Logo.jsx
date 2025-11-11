@@ -8,7 +8,7 @@ import LogoImage from '@plone/volto/components/theme/Logo/Logo.svg';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link, useLocation } from 'react-router-dom';
 import { getNavroot } from '@plone/volto/actions/navroot/navroot';
-import { flattenToAppURL, getBaseUrl } from '@plone/volto/helpers/Url/Url';
+import { flattenToAppURL, getBaseUrl, addAppURL } from '@plone/volto/helpers/Url/Url';
 import { hasApiExpander } from '@plone/volto/helpers/Utils/Utils';
 import Image from '@plone/volto/components/theme/Image/Image';
 
@@ -50,7 +50,7 @@ const Logo = () => {
         className="ui image"
         src={
           site['plone.site_logo']
-            ? flattenToAppURL(site['plone.site_logo'])
+            ? addAppURL(flattenToAppURL(site['plone.site_logo']))
             : LogoImage
         }
         alt={
