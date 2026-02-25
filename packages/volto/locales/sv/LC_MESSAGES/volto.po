@@ -1,9 +1,9 @@
-#~ msgid ""
-#~ msgstr ""
-#~ "Project-Id-Version: \n"
-#~ "Report-Msgid-Bugs-To: \n"
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-23T10:42:17.489Z\n"
-"PO-Revision-Date: 2025-10-28 10:39+0100\n"
+"PO-Revision-Date: 2026-02-25 17:06+0100\n"
 "Last-Translator: Andreas Jonsson <andreas.jonsson@kreablo.se>\n"
 "Language: Swedish\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
@@ -25,7 +25,7 @@ msgstr "<p>Lägg till HTML här</p>"
 #. Default: "A unique identifier for the group. Cannot be changed after creation. No spaces allowed."
 #: helpers/MessageLabels/MessageLabels
 msgid "A unique identifier for the group. Cannot be changed after creation. No spaces allowed."
-msgstr ""
+msgstr "Unik identifierare för gruppen. Kan ej ändras i efterhand. Mellanslag ej tillåtet."
 
 #. Default: "Account Registration Completed"
 #: components/theme/Register/Register
@@ -1038,6 +1038,7 @@ msgstr "Standardvy"
 
 #. Default: "Delete"
 #: components/manage/Contents/Contents
+#: components/manage/Contents/ContentsDeleteModal
 #: components/manage/Contents/ContentsItem
 #: components/manage/Controlpanels/ContentTypesActions
 #: components/manage/Controlpanels/Groups/RenderGroups
@@ -1238,7 +1239,7 @@ msgstr "Släpp filer här ..."
 #. Default: "Drop files here to upload"
 #: components/manage/Contents/DropZoneContent
 msgid "Drop files here to upload"
-msgstr ""
+msgstr "Släpp här för att ladda upp"
 
 #. Default: "Dry run selected, transaction aborted."
 #: components/manage/Controlpanels/UpgradeControlPanel
@@ -1434,6 +1435,7 @@ msgstr "Artiklar"
 #: components/manage/Edit/Edit
 #: components/manage/Form/InlineForm
 #: components/manage/Toolbar/More
+#: components/manage/Widgets/ImageWidget
 #: components/manage/Widgets/SchemaWidget
 #: components/theme/ContactForm/ContactForm
 #: components/theme/Login/Login
@@ -1499,7 +1501,7 @@ msgstr "Expandera sidopanel"
 #. Default: "Expand toolbar"
 #: components/manage/Toolbar/Toolbar
 msgid "Expand toolbar"
-msgstr ""
+msgstr "Expandera verktygsfält"
 
 #. Default: "Expiration Date"
 #: components/manage/Contents/ContentsPropertiesModal
@@ -2600,7 +2602,7 @@ msgstr "Ingen"
 #. Default: "None"
 #: components/manage/Contents/ContentsItem
 msgid "Not available"
-msgstr ""
+msgstr "Inga"
 
 #. Default: "Note"
 #: components/manage/Controlpanels/UndoControlpanel
@@ -2634,7 +2636,7 @@ msgstr "Ok"
 
 #. Default: "Only 7-bit bytes characters are allowed. Cannot contain uppercase letters, special characters: <, >, &, #, /, ?, or others that are illegal in URLs. Cannot start with: _, aq_, @@, ++. Cannot end with __. Cannot be: request,contributors, ., .., \"\". Cannot contain new lines."
 #: components/manage/Widgets/IdWidget
-msgid "Only 7-bit bytes characters are allowed. Cannot contain uppercase letters, special characters: <, >, &, #, /, ?, or others that are illegal in URLs. Cannot start with: _, aq_, @@, ++. Cannot end with __. Cannot be: request,contributors, ., .., "". Cannot contain new lines."
+msgid "Only 7-bit bytes characters are allowed. Cannot contain uppercase letters, special characters: <, >, &, #, /, ?, or others that are illegal in URLs. Cannot start with: _, aq_, @@, ++. Cannot end with __. Cannot be: request,contributors, ., .., \"\". Cannot contain new lines."
 msgstr "Får ej innehålla stora bokstäver, andra bokstäver än a-z, specialtecken: <, >, &, #, /, ?, eller andra tecken som ej för förekomma i URL:er. Får ej börja med: _, aq_, @@, ++. Får ej sluta med __. Får ej vara: request,contributors, ., .., ". Får ej innehålla nyradstecken."
 
 #. Default: "Open URL browser"
@@ -3003,7 +3005,7 @@ msgstr "Relationer uppdaterade"
 #. Default: "Release to add file(s) to this folder"
 #: components/manage/Contents/DropZoneContent
 msgid "Release to add file(s) to this folder"
-msgstr ""
+msgstr "Släpp för att lägga till fil(er) till den här mappen"
 
 #. Default: "Relevance"
 #: components/theme/Search/Search
@@ -4264,7 +4266,7 @@ msgstr "Ladda upp"
 #. Default: "Upload Files ({count})"
 #: components/manage/Contents/DropZoneContent
 msgid "Upload Files ({count})"
-msgstr ""
+msgstr "Ladda upp filer ({count})"
 
 #. Default: "Upload a lead image in the 'Lead Image' content field."
 #: components/manage/Blocks/LeadImage/Edit
@@ -4536,6 +4538,16 @@ msgstr "Årligen"
 msgid "Yes"
 msgstr "Ja"
 
+#. Default: "You are about to delete all items in the current pagination of this folder."
+#: components/manage/Contents/ContentsDeleteModal
+msgid "You are about to delete all items in the current pagination of this folder."
+msgstr "Du kommer att radera alla objekt synliga på denna sida i den här mappen."
+
+#. Default: "You are about to delete all items in this folder."
+#: components/manage/Contents/ContentsDeleteModal
+msgid "You are about to delete all items in this folder."
+msgstr "Du kommer att radera alla objekt i den här mappen."
+
 #. Default: "You are trying to access a protected resource, please {login} first."
 #: components/theme/Unauthorized/Unauthorized
 msgid "You are trying to access a protected resource, please {login} first."
@@ -4790,7 +4802,7 @@ msgstr "/exempel"
 #. Default: "External URLs are not allowed in this field."
 #: components/manage/Widgets/ImageWidget
 msgid "externalURLsNotAllowed"
-msgstr ""
+msgstr "Externa URL:er är inte tillåtna i detta fält."
 
 #. Default: "This website does not accept files larger than {limit}"
 #: helpers/MessageLabels/MessageLabels
@@ -4832,6 +4844,11 @@ msgstr "html"
 msgid "image"
 msgstr "Bild"
 
+#. Default: "Please upload an image instead."
+#: components/manage/Widgets/ImageWidget
+msgid "imageUploadErrorMessage"
+msgstr "Ladda upp en bild istället."
+
 #. Default: "Clear image"
 #: components/manage/Blocks/Image/ImageSidebar
 msgid "image_block_clear"
@@ -4850,7 +4867,7 @@ msgstr "Inmatat värde måste vara ett heltal"
 #. Default: "No image was found in the internal path you provided."
 #: components/manage/Widgets/ImageWidget
 msgid "internalImageNotFoundErrorMessage"
-msgstr ""
+msgstr "Ingen bild fanns på angiven sökväg."
 
 #. Default: "Intranet"
 #: components/manage/Contents/ContentsItem
@@ -4881,11 +4898,6 @@ msgstr "Mitt användarnamn är"
 #: config/Blocks
 msgid "leadimage"
 msgstr "Försättsbild"
-
-#. Default: "Delete"
-#: components/manage/Contents/ContentsDeleteModal
-msgid "link-integrity: Delete"
-msgstr "Ta bort"
 
 #. Default: "Delete item and break links"
 #: components/manage/Contents/ContentsDeleteModal
@@ -5014,12 +5026,12 @@ msgstr "Publicerad"
 #. Default: "Current path (./)"
 #: components/manage/Widgets/QueryWidget
 msgid "query-widget-currentPath"
-msgstr ""
+msgstr "Aktuell sökväg (./)"
 
 #. Default: "Parent path (../)"
 #: components/manage/Widgets/QueryWidget
 msgid "query-widget-parentPath"
-msgstr ""
+msgstr "Förälders sökväg (../)"
 
 #. Default: "Select…"
 #: components/manage/Widgets/QueryWidget
@@ -5049,7 +5061,7 @@ msgstr "hänvisar till"
 #. Default: "Result count"
 #: components/manage/Contents/Contents
 msgid "resultCount"
-msgstr ""
+msgstr "Antal resultat"
 
 #. Default: "results"
 #: components/theme/Search/Search
@@ -5139,7 +5151,7 @@ msgstr "månader"
 #. Default: "nd"
 #: components/manage/Widgets/RecurrenceWidget/Utils
 msgid "rrule_nd"
-msgstr ""
+msgstr "nd"
 
 #. Default: "on"
 #: components/manage/Widgets/RecurrenceWidget/Utils
@@ -5159,22 +5171,22 @@ msgstr "eller"
 #. Default: "rd"
 #: components/manage/Widgets/RecurrenceWidget/Utils
 msgid "rrule_rd"
-msgstr ""
+msgstr "rd"
 
 #. Default: "st"
 #: components/manage/Widgets/RecurrenceWidget/Utils
 msgid "rrule_st"
-msgstr ""
+msgstr "st"
 
 #. Default: "th"
 #: components/manage/Widgets/RecurrenceWidget/Utils
 msgid "rrule_th"
-msgstr ""
+msgstr "th"
 
 #. Default: "the"
 #: components/manage/Widgets/RecurrenceWidget/Utils
 msgid "rrule_the"
-msgstr "​"
+msgstr "the​"
 
 #. Default: "time"
 #: components/manage/Widgets/RecurrenceWidget/Utils
