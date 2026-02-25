@@ -1,21 +1,21 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR Free Software Foundation, Inc.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
 msgid ""
 msgstr ""
-"Project-Id-Version: Plone\n"
-"POT-Creation-Date: 2022-07-20T12:45:09.681Z\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
-"Language: sv\n"
+"Project-Id-Version: PACKAGE VERSION\n"
+"PO-Revision-Date: 2026-02-25 17:09+0100\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=utf-8\n"
+"Content-Type: text/plain; charset=CHARSET\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=n != 1;\n"
-"Language-Code: en\n"
-"Language-Name: English\n"
-"Preferred-Encodings: utf-8\n"
-"Domain: volto\n"
 
 # defaultMessage: Add link
 #: editor/plugins/Link/index
+#, fuzzy
 msgid "Add link"
 msgstr "Länk till länk"
 
@@ -109,27 +109,27 @@ msgstr "Infoga rad före"
 # defaultMessage: Left
 #: blocks/Table/TableBlockEdit
 msgid "Left"
-msgstr ""
+msgstr "Vänster"
 
 # defaultMessage: Make the table compact
 #: blocks/Table/TableBlockEdit
 msgid "Make the table compact"
-msgstr ""
+msgstr "Kompakt tabell"
 
 # defaultMessage: Make the table sortable
 #: blocks/Table/TableBlockEdit
 msgid "Make the table sortable"
-msgstr ""
+msgstr "Sorterbar tabell"
 
 # defaultMessage: Middle
 #: blocks/Table/TableBlockEdit
 msgid "Middle"
-msgstr ""
+msgstr "Mitten"
 
 # defaultMessage: No matching blocks
 #: blocks/Text/SlashMenu
 msgid "No matching blocks"
-msgstr ""
+msgstr "Inga matchande block"
 
 # defaultMessage: Reduce complexity
 #: blocks/Table/TableBlockEdit
