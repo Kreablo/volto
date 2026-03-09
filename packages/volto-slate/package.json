@@ -42,10 +42,10 @@
     "react-toastify": "5.5.0",
     "redux-mock-store": "1.5.4",
     "semantic-ui-react": "2.1.5",
-    "slate": "0.100.0",
+    "slate": "0.120.0",
     "slate-history": "0.100.0",
     "slate-hyperscript": "0.100.0",
-    "slate-react": "0.98.4",
+    "slate-react": "0.120.0",
     "uuid": "^9.0.1",
     "weak-key": "^1.0.2"
   },
