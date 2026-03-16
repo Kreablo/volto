@@ -46,6 +46,7 @@
     "slate-history": "0.100.0",
     "slate-hyperscript": "0.100.0",
     "slate-react": "0.120.0",
+    "slate-dom": "0.119.0",
     "uuid": "^9.0.1",
     "weak-key": "^1.0.2"
   },
