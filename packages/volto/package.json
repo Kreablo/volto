@@ -210,6 +210,7 @@
     "locale": "0.1.0",
     "lodash": "4.17.21",
     "lodash-move": "1.1.1",
+    "lru-cache": "11.2.7",
     "moment": "2.29.4",
     "object-assign": "4.1.1",
     "prepend-http": "2",
