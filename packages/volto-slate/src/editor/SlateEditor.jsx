@@ -161,8 +161,18 @@ class SlateEditor extends Component {
           this.props.defaultSelection,
         );
 
-        ReactEditor.focus(editor);
-        Transforms.select(editor, selection);
+        try {
+          ReactEditor.focus(editor);
+          Transforms.select(editor, selection);
+        } catch (error) {
+          Transforms.move(editor, {
+            distance: 1,
+            unit: 'character',
+            reverse: false,
+          })
+          ReactEditor.focus(editor);
+          Transforms.select(editor, editor.selection);
+        }
       } else {
         try {
           Transforms.select(editor, Editor.end(editor, []));
