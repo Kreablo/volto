@@ -56,6 +56,13 @@ class Search extends Component {
         description: PropTypes.string,
       }),
     ),
+    batching: PropTypes.shape({
+      '@id': PropTypes.string,
+      'first': PropTypes.string,
+      'last': PropTypes.string,
+      'prev': PropTypes.string,
+      'next': PropTypes.string,
+    }),
     pathname: PropTypes.string.isRequired,
   };
 
@@ -286,7 +293,7 @@ class Search extends Component {
                 </article>
               ))}
 
-              {this.props.search?.batching && (
+              {this.props.batching && (
                 <div className="search-footer">
                   <Pagination
                     activePage={this.state.currentPage}
@@ -300,16 +307,16 @@ class Search extends Component {
                     prevItem={{
                       content: <Icon name={paginationLeftSVG} size="18px" />,
                       icon: true,
-                      'aria-disabled': !this.props.search.batching.prev,
-                      className: !this.props.search.batching.prev
+                      'aria-disabled': !this.props.batching.prev,
+                      className: !this.props.batching.prev
                         ? 'disabled'
                         : null,
                     }}
                     nextItem={{
                       content: <Icon name={paginationRightSVG} size="18px" />,
                       icon: true,
-                      'aria-disabled': !this.props.search.batching.next,
-                      className: !this.props.search.batching.next
+                      'aria-disabled': !this.props.batching.next,
+                      className: !this.props.batching.next
                         ? 'disabled'
                         : null,
                     }}
@@ -350,6 +357,7 @@ export default compose(
   connect(
     (state, props) => ({
       items: state.search.items,
+      batching: state.search.batching,
       searchableText: qs.parse(props.history.location.search).SearchableText,
       pathname: props.location.pathname,
     }),
