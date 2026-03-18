@@ -83,27 +83,27 @@ export function searchContent(url: string, options: Record<string, any>, subrequ
 
   const querystring = join(compact(queryArray), '&');
 
-  return async (dispatch, getState) => {
+  return (dispatch: (action: any) => Promise<any>, _getState) => {
     const key = querystring;
     const value = _no_cache(key) ? undefined : _request_cache.get(key) as { items: any[], items_total: number, batching: any } | undefined;
     if (value !== undefined) {
       return dispatch({
         type: `${SEARCH_CONTENT}_SUCCESS`,
         subrequest,
-        result: value,
+        result: { ...value },
       });
     }
-    const result = await dispatch({
+    return dispatch({
       type: SEARCH_CONTENT,
       subrequest,
       request: {
         op: 'get',
         path: `${url}/@search${querystring ? `?${querystring}` : ''}`,
       },
+    }).then((result: { items: any[], items_total: number, batching: any }) => {
+      _request_cache.set(key, { ...result });
+      return result;
     });
-    const s = getState();
-    _request_cache.set(key, result);
-    return s.search;
   };
 }
 
