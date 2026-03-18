@@ -24,6 +24,16 @@ const _request_cache = new LRUCache({
   ttl: 1000 * 60 * 5,
 });
 
+const _no_cache: (querystring: string) => boolean = (querystring) => {
+  try {
+    const query = new URLSearchParams(querystring);
+    return query.get('sort_on') === 'getObjPositionInParent';
+  } catch (e) {
+    return true;
+  }
+  return false;
+};
+
 /**
  * Search content function.
  * @function searchContent
@@ -75,7 +85,7 @@ export function searchContent(url: string, options: Record<string, any>, subrequ
 
   return async (dispatch, getState) => {
     const key = querystring;
-    const value = _request_cache.get(key) as { items: any[], items_total: number, batching: any } | undefined;
+    const value = _no_cache(key) ? undefined : _request_cache.get(key) as { items: any[], items_total: number, batching: any } | undefined;
     if (value !== undefined) {
       return dispatch({
         type: `${SEARCH_CONTENT}_SUCCESS`,
