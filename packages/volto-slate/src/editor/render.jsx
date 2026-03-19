@@ -11,7 +11,7 @@ import omit from 'lodash/omit';
 import UniversalLink from '@plone/volto/components/manage/UniversalLink/UniversalLink';
 import Toast from '@plone/volto/components/manage/Toast/Toast';
 import { messages } from '@plone/volto/helpers/MessageLabels/MessageLabels';
-import { addAppURL } from '@plone/volto/helpers/Url/Url';
+import { toPublicURL } from '@plone/volto/helpers/Url/Url';
 import useClipboard from '@plone/volto/hooks/clipboard/useClipboard';
 import config from '@plone/volto/registry';
 import linkSVG from '@plone/volto/icons/link.svg';
@@ -173,7 +173,7 @@ export const renderLinkElement = (tagName) => {
     const slug = attributes.id || '';
     const location = useLocation();
     const token = useSelector((state) => state.userSession.token);
-    const appPathname = addAppURL(location.pathname);
+    const appPathname = toPublicURL(location.pathname);
     // eslint-disable-next-line no-unused-vars
     const [copied, copy, setCopied] = useClipboard(
       appPathname.concat(`#${slug}`),
