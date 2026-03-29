@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-23T10:42:17.489Z\n"
-"PO-Revision-Date: 2026-03-19 13:28+0100\n"
+"PO-Revision-Date: 2026-03-29 16:48+0200\n"
 "Last-Translator: Andreas Jonsson <andreas.jonsson@kreablo.se>\n"
 "Language: Swedish\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
@@ -2283,7 +2283,7 @@ msgstr "Kart-URL"
 #. Default: "Maximum file size is {maxSize} bytes, but the uploaded file is {size} bytes."
 #: helpers/MessageLabels/MessageLabels
 msgid "Maximum file size is {maxSize} bytes, but the uploaded file is {size} bytes."
-msgstr ""
+msgstr "Maximal filstorlek är {maxSize} bytes, men den uppladdade filen är {size} bytes."
 
 #. Default: "Maximum length is {len}."
 #: helpers/MessageLabels/MessageLabels
@@ -4531,7 +4531,7 @@ msgstr "Du kan kontrollera vem som kan se och redigera ditt objekt med listorna 
 #. Default: "You can not move this type of block to the new location"
 #: components/manage/Blocks/Block/Order/Order
 msgid "You can not move this type of block to the new location"
-msgstr ""
+msgstr "Du kan inte flytta den här typen av block till den nya platsen"
 
 #. Default: "You can view the difference of the revisions below."
 #: components/manage/Diff/Diff
@@ -4672,7 +4672,7 @@ msgstr "ta bort"
 #. Default: "delete {type} block"
 #: components/manage/Blocks/Block/EditBlockWrapper
 msgid "delete_block"
-msgstr ""
+msgstr "ta bort {type} block"
 
 #. Default: "You are using {browsername} {browserversion} which is deprecated by its vendor. That means that it does not get security updates and it is not ready for current modern web features, which deteriorates the user experience. Please upgrade to a modern browser."
 #: components/theme/OutdatedBrowser/OutdatedBrowser
@@ -4702,7 +4702,7 @@ msgstr "Utkast"
 #. Default: "drag {type} block"
 #: components/manage/Blocks/Block/EditBlockWrapper
 msgid "drag_block"
-msgstr ""
+msgstr "dra {type} block"
 
 #. Default: "Input must be valid email (something@domain.com)"
 #: helpers/MessageLabels/MessageLabels
