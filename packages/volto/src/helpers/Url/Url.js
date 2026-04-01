@@ -138,17 +138,22 @@ export function toPublicURL(url) {
 export const isCmsUi = memoize((currentPathname) => {
   const { settings } = config;
   const fullPath = currentPathname.replace(/\?.*$/, '');
-  // WARNING:
-  // not working properly for paths like /editors or similar
-  // because the regexp test does not take that into account
-  // https://github.com/plone/volto/issues/870
-  return settings.nonContentRoutes.reduce(
-    (acc, route) =>
-      acc ||
+
+  return settings.nonContentRoutes.findIndex(
+    (route) =>
       (!settings.nonContentRoutesPublic?.includes(route) &&
-        new RegExp(route).test(fullPath)),
-    false,
-  );
+       new RegExp(route).test(fullPath))
+  ) >= 0;
+});
+
+
+export const isNonContent = memoize((currentPathname) => {
+  const { settings } = config;
+  const fullPath = currentPathname.replace(/\?.*$/, '');
+
+  return settings.nonContentRoutes.findIndex(
+    (route) => new RegExp(route).test(fullPath)
+  ) >= 0;
 });
 
 /**
