@@ -74,6 +74,37 @@ const Image = forwardRef(({
             `${flattenToAppURL(basePath)}/${scale.download} ${scale.width}w`,
         )
         .join(', ');
+
+      let sizes = loading === 'lazy' ? ['auto'] : [];
+      let defSize = undefined;
+
+      if (image.width) {
+        try {
+          const w = Number.parseInt(image.width);
+          let src = null;
+          for (let i = sortedScales.length ; i >= 0 ; i--) {
+            const scale = sortedScales[i];
+            if (scale.width >= w) {
+              src = scale.download;
+            } else {
+              break;
+            }
+          }
+          if (src !== null) {
+            attrs.src = `${flattenToAppURL(basePath)}/${src}`;
+          }
+          sizes.push(`(max-width: {w}px) 100vw`);
+          defSize = `{w}px`;
+        } catch (e) {
+          console.log("exception when selecting default image src attr: " + e)
+        }
+      }
+      if (defSize !== undefined) {
+        sizes.push(defSize);
+      } else {
+        sizes.push('100vw');
+      }
+      attrs.sizes = sizes.join(', ');
     }
   }
 
