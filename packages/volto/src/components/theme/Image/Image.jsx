@@ -75,14 +75,15 @@ const Image = forwardRef(({
         )
         .join(', ');
 
-      let sizes = loading === 'lazy' ? ['auto'] : [];
+      let sizes = '100vw';
       let defSize = undefined;
+      const width = imageProps.width ?? image.width;
 
-      if (image.width) {
+      if (width) {
         try {
-          const w = Number.parseInt(image.width);
+          const w = Number.parseInt(width);
           let src = null;
-          for (let i = sortedScales.length ; i >= 0 ; i--) {
+          for (let i = sortedScales.length - 1; i >= 0 ; i--) {
             const scale = sortedScales[i];
             if (scale.width >= w) {
               src = scale.download;
@@ -93,18 +94,15 @@ const Image = forwardRef(({
           if (src !== null) {
             attrs.src = `${flattenToAppURL(basePath)}/${src}`;
           }
-          sizes.push(`(max-width: {w}px) 100vw`);
-          defSize = `{w}px`;
+          sizes = `(max-width: ${w}px) 100vw, ${w}px`;
         } catch (e) {
           console.log("exception when selecting default image src attr: " + e)
         }
       }
-      if (defSize !== undefined) {
-        sizes.push(defSize);
-      } else {
-        sizes.push('100vw');
+      attrs.sizes = sizes;
+      if (Object.hasOwn(imageProps, 'sizes') && imageProps.sizes === undefined) {
+        delete imageProps.sizes;
       }
-      attrs.sizes = sizes.join(', ');
     }
   }
 
