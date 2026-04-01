@@ -1,4 +1,4 @@
-import { isCmsUi } from '@plone/volto/helpers/Url/Url';
+import { isCmsUi, isNonContent } from '@plone/volto/helpers/Url/Url';
 
 const LOCATION_CHANGE = '@@router/LOCATION_CHANGE';
 const PROTECT_START = '@@loadProtector/START';
@@ -34,7 +34,7 @@ export const protectLoadStart =
         const { pathname: path } = location;
         const currentPath = getState().router.location.pathname;
         const result = next(action);
-        if (isCmsUi(path)) {
+        if (isNonContent(path)) {
           // Next path: isCmsUI, Non Content. There is no
           // loading here, so skip counting altogether.
           // Will update the delayed location constantly.
