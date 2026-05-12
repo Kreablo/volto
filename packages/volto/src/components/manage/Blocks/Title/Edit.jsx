@@ -11,6 +11,8 @@ import PropTypes from 'prop-types';
 import { defineMessages, useIntl } from 'react-intl';
 import config from '@plone/volto/registry';
 import { P } from '@plone/volto-slate/constants';
+import SidebarPortal from '@plone/volto/components/manage/Sidebar/SidebarPortal';
+import BlockDataForm from '@plone/volto/components/manage/Form/BlockDataForm';
 
 const messages = defineMessages({
   title: {
@@ -154,6 +156,20 @@ export const TitleBlockEdit = (props) => {
   if (typeof window.__SERVER__ !== 'undefined') {
     return <div />;
   }
+
+  const empty_schema = {
+    title: 'Block settings',
+    fieldsets: [
+      {
+        id: 'default',
+       title: 'Default',
+        fields: [],
+      },
+    ],
+    properties: {},
+    required: [],
+  };
+
   return (
     <Slate editor={editor} onChange={handleChange} initialValue={initialValue}>
       <Editable
@@ -165,6 +181,20 @@ export const TitleBlockEdit = (props) => {
         aria-multiline="false"
         aria-label={intl.formatMessage(messages.editable_title)}
       ></Editable>
+      <SidebarPortal selected={props.selected}>
+        <BlockDataForm
+          schema={empty_schema}
+          title={empty_schema.title}
+          onChangeField={(id, value) => props.onChangeBlock(block, {
+            ...data,
+            [id]: value,
+          })}
+          onChangeBlock={props.onChangeBlock}
+          formData={data}
+          block={block}
+          blocksConfig={props.blocksConfig}
+        />
+      </SidebarPortal>
     </Slate>
   );
 };
