@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2024-02-23T10:42:17.489Z\n"
-"PO-Revision-Date: 2026-03-29 16:48+0200\n"
+"PO-Revision-Date: 2026-05-12 23:03+0200\n"
 "Last-Translator: Andreas Jonsson <andreas.jonsson@kreablo.se>\n"
 "Language: Swedish\n"
 "Language-Team: Plone i18n <plone-i18n@lists.sourceforge.net>\n"
@@ -2850,7 +2850,7 @@ msgstr "Preferenser"
 #. Default: "Press Enter to browse files from your computer."
 #: components/manage/Widgets/FileWidget
 msgid "Press Enter to browse files from your computer."
-msgstr ""
+msgstr "Tryck på entertangenten för att bläddra bland filer på din dator."
 
 #. Default: "Prettify your code"
 #: components/manage/Blocks/HTML/Edit
@@ -4753,6 +4753,21 @@ msgstr "dra {type} block"
 #: helpers/MessageLabels/MessageLabels
 msgid "email"
 msgstr "Måste innehålla gilting epostadress (finemang@example.com)"
+
+#. Default: "{startDate} from {startTime}"
+#: components/theme/View/EventDatesInfo
+msgid "event-from-time"
+msgstr "{startDate} från {startTime}"
+
+#. Default: "{startDate} from {startTime} to {endTime}"
+#: components/theme/View/EventDatesInfo
+msgid "event-from-to-time"
+msgstr "{startDate} från {startTime} till {endTime}"
+
+#. Default: "to {endDate}"
+#: components/theme/View/EventDatesInfo
+msgid "event-to-date"
+msgstr " till {endDate}"
 
 #. Default: "All dates"
 #: components/theme/EventDetails/EventDetails

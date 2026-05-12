@@ -1,4 +1,5 @@
 import React from 'react';
+import { useIntl, defineMessages } from 'react-intl';
 import PropTypes from 'prop-types';
 import { List } from 'semantic-ui-react';
 import cx from 'classnames';
@@ -6,6 +7,21 @@ import cx from 'classnames';
 import { toBackendLang } from '@plone/volto/helpers/Utils/Utils';
 import { injectLazyLibs } from '@plone/volto/helpers/Loadable/Loadable';
 import { useSelector } from 'react-redux';
+
+const messages = defineMessages({
+  fromTime: {
+    id: 'event-from-time',
+    defaultMessage: '{startDate} from {startTime}',
+  },
+  fromToTime: {
+    id: 'event-from-to-time',
+    defaultMessage: '{startDate} from {startTime} to {endTime}',
+  },
+  toDate: {
+    id: 'event-to-date',
+    defaultMessage: ' to {endDate}',
+  },
+});
 
 export const datesForDisplay = (start, end, moment) => {
   const mStart = moment(start);
@@ -27,6 +43,7 @@ export const datesForDisplay = (start, end, moment) => {
 
 const When_ = ({ start, end, whole_day, open_end, moment: momentlib }) => {
   const lang = useSelector((state) => state.intl.locale);
+  const intl = useIntl();
 
   const moment = momentlib.default;
   moment.locale(toBackendLang(lang));
@@ -58,19 +75,20 @@ const When_ = ({ start, end, whole_day, open_end, moment: momentlib }) => {
             )}
           </span>
           {!open_end && (
-            <>
-              &nbsp;to&nbsp;
-              <span className="end">
-                <span className="end-date">{datesInfo.endDate}</span>
-                {!whole_day && (
-                  <>
-                    {/* Plone has an optional word based on locale here */}
-                    <span> </span>
-                    <span className="end-time">{datesInfo.endTime}</span>
-                  </>
-                )}
-              </span>
-            </>
+            <>{intl.formatMessage(messages.toDate, {
+              endDate: (
+                <span className="end">
+                  <span className="end-date">{datesInfo.endDate}</span>
+                  {!whole_day && (
+                    <>
+                      {/* Plone has an optional word based on locale here */}
+                      <span> </span>
+                      <span className="end-time">{datesInfo.endTime}</span>
+                    </>
+                  )}
+                </span>
+              ),
+            })}</>
           )}
         </>
       ) : (
@@ -79,20 +97,17 @@ const When_ = ({ start, end, whole_day, open_end, moment: momentlib }) => {
             <span className="start-date">{datesInfo.startDate}</span>
           )}
           {open_end && !whole_day && (
-            <>
-              <span className="start-date">{datesInfo.startDate}</span>
-              &nbsp;from&nbsp;
-              <span className="start-time">{datesInfo.startTime}</span>
-            </>
+            <>{intl.formatMessage(messages.fromTime, {
+              startDate: <span className="start-date">{datesInfo.startDate}</span>,
+              startTime: <span className="start-time">{datesInfo.startTime}</span>,
+            })}</>
           )}
           {!(whole_day || open_end) && (
-            <>
-              <span className="start-date">{datesInfo.startDate}</span>
-              &nbsp;from&nbsp;
-              <span className="start-time">{datesInfo.startTime}</span>
-              &nbsp;to&nbsp;
-              <span className="end-time">{datesInfo.endTime}</span>
-            </>
+            <>{intl.formatMessage(messages.fromToTime, {
+              startDate: <span className="start-date">{datesInfo.startDate}</span>,
+              startTime: <span className="start-time">{datesInfo.startTime}</span>,
+              endTime: <span className="end-time">{datesInfo.endTime}</span>,
+            })}</>
           )}
         </>
       )}
