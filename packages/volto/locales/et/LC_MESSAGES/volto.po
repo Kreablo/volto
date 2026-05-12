@@ -4718,6 +4718,21 @@ msgstr ""
 msgid "email"
 msgstr ""
 
+#. Default: "{startDate} from {startTime}"
+#: components/theme/View/EventDatesInfo
+msgid "event-from-time"
+msgstr ""
+
+#. Default: "{startDate} from {startTime} to {endTime}"
+#: components/theme/View/EventDatesInfo
+msgid "event-from-to-time"
+msgstr ""
+
+#. Default: "to {endDate}"
+#: components/theme/View/EventDatesInfo
+msgid "event-to-date"
+msgstr ""
+
 #. Default: "All dates"
 #: components/theme/EventDetails/EventDetails
 msgid "event_alldates"
