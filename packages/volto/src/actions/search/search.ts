@@ -55,10 +55,6 @@ export function searchContent(url: string, options: Record<string, any>, subrequ
     options
       ? join(
         map(toPairs(pickBy(options, (item) => !isArray(item))), (item) => {
-          if (item[0] === 'SearchableText') {
-            // Adds the wildcard to the SearchableText param
-            item[1] = `${item[1]}*`;
-          }
           return join(item, '=');
         }),
         '&',
