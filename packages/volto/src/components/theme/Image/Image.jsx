@@ -1,7 +1,33 @@
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { flattenToAppURL, flattenScales } from '@plone/volto/helpers/Url/Url';
-import { forwardRef } from 'react';
+import { forwardRef, useRef, useState, useEffect } from 'react';
+import ResizeObserver from 'resize-observer-polyfill';
+
+const WidthDummy = () => {
+  const ref = useRef(null);
+  const [width, setWidth] = useState(null);
+
+  useEffect(() => {
+    const observer = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.contentRect && entry.contentRect.width !== width) {
+          setWidth(entry.contentRect.width);
+        }
+      }
+    });
+    const current = ref.current;
+    if (current !== null) {
+      observer.observe(current);
+    }
+    return () => {
+      if (current !== null) {
+        observer.disconnect();
+      }
+    };
+  }, [ref, width]);
+  return [width, <div ref={ref} style={{ width: '100%', height: 0 }} />];
+};
 
 /**
  * Image component
@@ -25,6 +51,7 @@ const Image = forwardRef(({
   ...imageProps
 }, ref) => {
   if (!item && !src) return null;
+  const [target_width, widthdummy] = WidthDummy();
 
   // TypeScript hints for editor autocomplete :)
   /** @type {React.ImgHTMLAttributes<HTMLImageElement>} */
@@ -50,10 +77,6 @@ const Image = forwardRef(({
     // In case `base_path` is present (`preview_image_link`) use it as base path
     const basePath = image.base_path || item['@id'];
 
-    attrs.src = `${flattenToAppURL(basePath)}/${image.download}`;
-    attrs.width = image.width;
-    attrs.height = image.height;
-
     if (!isSvg && image.scales && Object.keys(image.scales).length > 0) {
       const sortedScales = Object.values({
         ...image.scales,
@@ -76,23 +99,24 @@ const Image = forwardRef(({
         .join(', ');
 
       let sizes = '100vw';
-      let defSize = undefined;
-      const width = imageProps.width ?? image.width;
+      const width = imageProps.width ?? target_width;
 
       if (width) {
         try {
           const w = Number.parseInt(width);
-          let src = null;
+          let selected_scales = null;
           for (let i = sortedScales.length - 1; i >= 0 ; i--) {
             const scale = sortedScales[i];
             if (scale.width >= w) {
-              src = scale.download;
+              selected_scales = scale;
             } else {
               break;
             }
           }
-          if (src !== null) {
-            attrs.src = `${flattenToAppURL(basePath)}/${src}`;
+          if (selected_scales !== null) {
+            attrs.src = `${flattenToAppURL(basePath)}/${selected_scales.download}`;
+            attrs.width = selected_scales.width;
+            attrs.height = selected_scales.height;
           }
           sizes = `(max-width: ${w}px) 100vw, ${w}px`;
         } catch (e) {
@@ -114,7 +138,7 @@ const Image = forwardRef(({
   }
 
   // eslint-disable-next-line no-restricted-syntax
-  return <img {...attrs} alt={alt} ref={ref} {...imageProps} />;
+  return <>{widthdummy}<img {...attrs} alt={alt} ref={ref} {...imageProps} /></>;
 });
 
 Image.propTypes = {
