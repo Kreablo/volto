@@ -1,33 +1,8 @@
 import PropTypes from 'prop-types';
 import cx from 'classnames';
 import { flattenToAppURL, flattenScales } from '@plone/volto/helpers/Url/Url';
-import { forwardRef, useRef, useState, useEffect } from 'react';
+import { forwardRef, useState, useEffect, useCallback } from 'react';
 import ResizeObserver from 'resize-observer-polyfill';
-
-const WidthDummy = () => {
-  const ref = useRef(null);
-  const [width, setWidth] = useState(null);
-
-  useEffect(() => {
-    const observer = new ResizeObserver((entries) => {
-      for (const entry of entries) {
-        if (entry.contentRect && entry.contentRect.width !== width) {
-          setWidth(entry.contentRect.width);
-        }
-      }
-    });
-    const current = ref.current;
-    if (current !== null) {
-      observer.observe(current);
-    }
-    return () => {
-      if (current !== null) {
-        observer.disconnect();
-      }
-    };
-  }, [ref, width]);
-  return [width, <div ref={ref} style={{ width: '100%', height: 0 }} />];
-};
 
 /**
  * Image component
@@ -50,8 +25,39 @@ const Image = forwardRef(({
   className = '',
   ...imageProps
 }, ref) => {
+
+  const [target_width, setTargetWidth] = useState(null);
+  const [imgRef, setImgRef] = useState(ref?.current ?? null);
+
+  const callbackRef = useCallback((node) => {
+    if (typeof ref === 'function') {
+      ref(node);
+    } else if (ref !== null){
+      ref.current = node;
+    }
+    setImgRef(node);
+  }, [ref]);
+
+  useEffect(() => {
+    const observer = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.contentRect && entry.contentRect.width !== target_width) {
+          setTargetWidth(entry.contentRect.width);
+        }
+      }
+    });
+    const current = imgRef;
+    if (current?.parentNode !== undefined) {
+      observer.observe(current.parentNode);
+    }
+    return () => {
+      if (current?.parentNode !== undefined) {
+        observer.disconnect();
+      }
+    };
+  }, [target_width, imgRef]);
+
   if (!item && !src) return null;
-  const [target_width, widthdummy] = WidthDummy();
 
   // TypeScript hints for editor autocomplete :)
   /** @type {React.ImgHTMLAttributes<HTMLImageElement>} */
@@ -138,7 +144,7 @@ const Image = forwardRef(({
   }
 
   // eslint-disable-next-line no-restricted-syntax
-  return <>{widthdummy}<img {...attrs} alt={alt} ref={ref} {...imageProps} /></>;
+  return <img {...attrs} alt={alt} ref={callbackRef} {...imageProps} />;
 });
 
 Image.propTypes = {
