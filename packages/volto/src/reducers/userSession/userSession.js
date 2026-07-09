@@ -60,10 +60,16 @@ export default function userSession(state = initialState, action = {}) {
           error: action.error.response.error,
         },
       };
+    case `${LOGOUT}_PENDING`:
     case `${LOGOUT}_FAIL`:
     case `${LOGOUT}_SUCCESS`:
       return {
         ...state,
+        login: {
+          loading: false,
+          loaded: false,
+          error: null,
+        },
         token: null,
       };
     case `${RESET_LOGIN_REQUEST}`:
