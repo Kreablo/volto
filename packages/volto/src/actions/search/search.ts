@@ -55,7 +55,7 @@ export function searchContent(url: string, options: Record<string, any>, subrequ
     options
       ? join(
         map(toPairs(pickBy(options, (item) => !isArray(item))), (item) => {
-          return join(item, '=');
+          return join(item.map(encodeURIComponent), '=');
         }),
         '&',
       )
