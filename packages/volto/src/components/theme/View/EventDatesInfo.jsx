@@ -1,7 +1,7 @@
 import React from 'react';
 import { useIntl, defineMessages } from 'react-intl';
 import PropTypes from 'prop-types';
-import { List } from 'semantic-ui-react';
+import { List, ListItem } from 'semantic-ui-react';
 import cx from 'classnames';
 
 import { toBackendLang } from '@plone/volto/helpers/Utils/Utils';
@@ -41,7 +41,7 @@ export const datesForDisplay = (start, end, moment) => {
   };
 };
 
-const When_ = ({ start, end, whole_day, open_end, moment: momentlib }) => {
+const When_ = ({ start, end, whole_day, open_end, moment: momentlib, recurrence, rrule }) => {
   const lang = useSelector((state) => state.intl.locale);
   const intl = useIntl();
 
@@ -52,6 +52,11 @@ const When_ = ({ start, end, whole_day, open_end, moment: momentlib }) => {
   if (!datesInfo) {
     return;
   }
+  const { rrulestr } = rrule;
+  const today = new Date();
+  const rule = recurrence ? rrulestr(recurrence, { unfold: true, forceset: true }) : null;
+  const upcoming = rule?.after(today);
+  const startDate = (recurrence && upcoming) ? moment(upcoming).format('ll') : datesInfo.startDate;
   // TODO I18N INTL
   return (
     <p
@@ -94,17 +99,17 @@ const When_ = ({ start, end, whole_day, open_end, moment: momentlib }) => {
       ) : (
         <>
           {whole_day && (
-            <span className="start-date">{datesInfo.startDate}</span>
+            <span className="start-date">{startDate}</span>
           )}
           {open_end && !whole_day && (
             <>{intl.formatMessage(messages.fromTime, {
-              startDate: <span className="start-date">{datesInfo.startDate}</span>,
+              startDate: <span className="start-date">{startDate}</span>,
               startTime: <span className="start-time">{datesInfo.startTime}</span>,
             })}</>
           )}
           {!(whole_day || open_end) && (
             <>{intl.formatMessage(messages.fromToTime, {
-              startDate: <span className="start-date">{datesInfo.startDate}</span>,
+              startDate: <span className="start-date">{startDate}</span>,
               startTime: <span className="start-time">{datesInfo.startTime}</span>,
               endTime: <span className="end-time">{datesInfo.endTime}</span>,
             })}</>
@@ -115,7 +120,7 @@ const When_ = ({ start, end, whole_day, open_end, moment: momentlib }) => {
   );
 };
 
-export const When = injectLazyLibs(['moment'])(When_);
+export const When = injectLazyLibs(['moment', 'rrule'])(When_);
 
 When.propTypes = {
   start: PropTypes.string.isRequired,
@@ -129,8 +134,10 @@ export const Recurrence_ = ({
   start,
   moment: momentlib,
   rrule,
+  end,
 }) => {
   const moment = momentlib.default;
+  const now = new Date();
   const { RRule, rrulestr } = rrule;
   if (recurrence.indexOf('DTSTART') < 0) {
     var dtstart = RRule.optionsToString({
@@ -140,13 +147,36 @@ export const Recurrence_ = ({
   }
   const rule = rrulestr(recurrence, { unfold: true, forceset: true });
 
+  const isNow = (date) => {
+    if (!date) {
+      return false;
+    }
+    const n = moment(now);
+    const s = moment(date.startTime, 'LT');
+    const e = moment(new Date(end));
+    return date.sameDay && n.isBetween(s, e);
+  };
+
+  const setDateClass = (date) => {
+    return {
+      ...date,
+      className: cx({
+        'past-date': !date.sameDay && (new Date(date.startDate).getTime()) < now.getTime(),
+        'is-today': date.sameDay,
+        'is-now': isNow(date),
+      }),
+    };
+  };
+
   return (
-    <List
-      items={rule
+    <List>
+      {rule
         .all()
         .map((date) => datesForDisplay(date, undefined, moment))
-        .map((date) => date.startDate)}
-    />
+        .map(setDateClass)
+        .map((date, index) => <ListItem key={index} className={date.className}>{date.startDate}</ListItem>)
+      }
+    </List>
   );
 };
 export const Recurrence = injectLazyLibs(['moment', 'rrule'])(Recurrence_);
@@ -154,4 +184,5 @@ export const Recurrence = injectLazyLibs(['moment', 'rrule'])(Recurrence_);
 Recurrence.propTypes = {
   recurrence: PropTypes.string.isRequired,
   start: PropTypes.string.isRequired,
+  end: PropTypes.string,
 };

@@ -11,6 +11,7 @@ import { normalizeString } from '@plone/volto/helpers/Utils/Utils';
 
 import paginationLeftSVG from '@plone/volto/icons/left-key.svg';
 import paginationRightSVG from '@plone/volto/icons/right-key.svg';
+import { injectLazyLibs } from '@plone/volto/helpers/Loadable/Loadable';
 
 const Headline = ({ headlineTag, id, data = {}, listingItems, isEditMode }) => {
   let attr = { id };
@@ -46,6 +47,7 @@ const ListingBody = withQuerystringResults((props) => {
     isFolderContentsListing,
     hasLoaded,
     id,
+    rrule,
   } = props;
 
   let ListingBodyTemplate;
@@ -70,6 +72,42 @@ const ListingBody = withQuerystringResults((props) => {
     : config.blocks?.blocksConfig['listing'].noResultsComponent;
 
   const HeadlineTag = data.headlineTag || 'h2';
+
+  if (variation.id === 'event_card') {
+    const { rrulestr } = rrule;
+
+    const query = props.data.query;
+    const sort_order = props.data.sort_order;
+    const sort_on = props.data.sort_on;
+    const today = new Date();
+
+    listingItems.forEach((item, index) => {
+      const recurrence = item.recurrence;
+      const rule = recurrence ? rrulestr(recurrence, { unfold: true }) : null;
+
+      const daterange = query?.reduce((acc, { o, v }) => o === "plone.app.querystring.operation.date.between" ? v : acc, undefined);
+      let count = rule?.options.count;
+      let upcoming: Date | undefined = rule?.after(today);
+
+      if (daterange && (rule !== null)) {
+        const m0 = new Date(daterange[0]);
+        const m1 = new Date(daterange[1]);
+        const nextDate = rule.after(m0);
+        const range: Date[] = rule.between(m0, m1);
+        upcoming = range.find((d: Date) => d.getTime() === nextDate.getTime()) ?? upcoming;
+        count = range.length;
+      };
+      listingItems[index] = { ...item, upcoming, count };
+    });
+
+    if (sort_on === 'start') {
+      listingItems.sort((a, b) => {
+        const da = (a.upcoming ?? new Date(a.start)).getTime();
+        const db = (b.upcoming ?? new Date(b.start)).getTime();
+        return sort_order === 'ascending' ? (da < db ? -1 : da > db ? 1 : 0) : (da < db ? 1 : da > db ? -1 : 0);
+      });
+    }
+  };
 
   return (
     <>
@@ -151,4 +189,4 @@ const ListingBody = withQuerystringResults((props) => {
   );
 });
 
-export default injectIntl(ListingBody);
+export default injectIntl(injectLazyLibs(['moment', 'rrule'])(ListingBody));
