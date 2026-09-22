@@ -62,6 +62,12 @@ export default function client() {
   if (window.env.defaultLanguage) {
     config.settings.defaultLanguage = window.env.defaultLanguage;
   }
+  if (typeof window.env.isMultilingual === 'boolean') {
+    config.settings.isMultilingual = window.env.isMultilingual;
+  }
+  if (window.env.supportedLanguages) {
+    config.settings.supportedLanguages = window.env.supportedLanguages;
+  }
 
   loadableReady(() => {
     hydrateRoot(
