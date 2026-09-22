@@ -56,6 +56,9 @@ const serverConfig =
     ? require('./server').default
     : {};
 
+const supportedLanguages = process.env.SITE_SUPPORTED_LANGUAGES ? JSON.parse(process.env.SITE_SUPPORTED_LANGUAGES) : ["en"];
+const isMultilingual = Boolean(process.env.SITE_IS_MULTILINGUAL || supportedLanguages.length > 1);
+
 let config = {
   settings: {
     host,
@@ -111,8 +114,8 @@ let config = {
     openExternalLinkInNewTab: false,
     notSupportedBrowsers: ['ie'],
     defaultPageSize: 25,
-    isMultilingual: false,
-    supportedLanguages: ['en'],
+    isMultilingual,
+    supportedLanguages,
     defaultLanguage: process.env.SITE_DEFAULT_LANGUAGE || 'en',
     navDepth: 1,
     expressMiddleware: serverConfig.expressMiddleware, // BBB

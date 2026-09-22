@@ -125,6 +125,12 @@ class Html extends Component {
                 ...(process.env.SITE_DEFAULT_LANGUAGE && {
                   defaultLanguage: process.env.SITE_DEFAULT_LANGUAGE,
                 }),
+                ...(process.env.SITE_SUPPORTED_LANGUAGES && {
+                  supportedLanguages: JSON.parse(process.env.SITE_SUPPORTED_LANGUAGES),
+                }),
+                ...(process.env.SITE_IS_MULTILINGUAL && {
+                  isMultilingual: Boolean(process.env.SITE_IS_MULTILINGUAL),
+                }),
               })};`,
             }}
           />
