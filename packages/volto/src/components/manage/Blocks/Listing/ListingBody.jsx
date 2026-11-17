@@ -76,9 +76,10 @@ const ListingBody = withQuerystringResults((props) => {
   if (variation?.id === 'event_card') {
     const { rrulestr } = rrule;
 
-    const query = props.data.query;
-    const sort_order = props.data.sort_order;
-    const sort_on = props.data.sort_on;
+    const it = props.data.querystring ?? props.data;
+    const query = it.query;
+    const sort_order = it.sort_order;
+    const sort_on = it.sort_on;
     const today = new Date();
 
     listingItems.forEach((item, index) => {
